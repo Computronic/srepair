@@ -9,7 +9,7 @@ const orders = [
     id: "1",
     type: "Local",
     priority: "Normal",
-    date: "2018-03-27T11:00:00+00:00",
+    date: "2018-03-27",
     clientId: "1",
     clientName: "Pablo Barrientos",
     clientPhone: "3814400616",
@@ -35,7 +35,7 @@ const orders = [
     id: "2",
     type: "Local",
     priority: "Normal",
-    date: "2018-03-28T11:00:00+00:00",
+    date: "2018-03-28",
     clientId: "2",
     clientName: "Laura Barrientos",
     clientPhone: "3814111222",
@@ -62,15 +62,40 @@ const orders = [
 export class OrderDashboard extends Component {
   state = {
     orders: orders,
-    isOpen: false
+    isOpen: false,
+    slectedOrder: null
   };
 
   handleFormOpen = () => {
-    this.setState({ isOpen: true });
+    this.setState({
+      selectedOrder: null,
+      isOpen: true
+    });
   };
 
   handleCancel = () => {
     this.setState({ isOpen: false });
+  };
+
+  handleUpdateOrder = updatedOrder => {
+    this.setState({
+      orders: this.state.orders.map(order => {
+        if (order.id === updatedOrder.id) {
+          return Object.assign({}, updatedOrder);
+        } else {
+          return order;
+        }
+      }),
+      isOpen: false,
+      selectedOrder: null
+    });
+  };
+
+  handleOpenOrder = orderToOpen => () => {
+    this.setState({
+      selectedOrder: orderToOpen,
+      isOpen: true
+    });
   };
 
   handleCreateOrder = newOrder => {
@@ -82,16 +107,33 @@ export class OrderDashboard extends Component {
     });
   };
 
+  handleDeleteOrder = orderId => () => {
+    const updatedOrders = this.state.orders.filter(o => o.id !== orderId);
+    this.setState({
+      orders: updatedOrders
+    });
+  };
+
   render() {
+    const { selectedOrder } = this.state;
     return (
       <Grid>
         <Grid.Column width={10}>
-          <OrderList orders={this.state.orders} />
+          <OrderList
+            deleteOrder={this.handleDeleteOrder}
+            onOrderOpen={this.handleOpenOrder}
+            orders={this.state.orders}
+          />
         </Grid.Column>
         <Grid.Column width={6}>
           <Button onClick={this.handleFormOpen} positive content="Create Order" />
           {this.state.isOpen && (
-            <OrderForm createOrder={this.handleCreateOrder} handleCancel={this.handleCancel} />
+            <OrderForm
+              updateOrder={this.handleUpdateOrder}
+              selectedOrder={selectedOrder}
+              createOrder={this.handleCreateOrder}
+              handleCancel={this.handleCancel}
+            />
           )}
         </Grid.Column>
       </Grid>

@@ -4,12 +4,17 @@ import OrderListItem from "./OrderListItem";
 
 export class OrderList extends Component {
   render() {
-    const { orders } = this.props;
+    const { orders, onOrderOpen, deleteOrder } = this.props;
     return (
       <div>
         <h1>Order List</h1>
         {orders.map(order => (
-          <OrderListItem key={order.id} order={order} />
+          <OrderListItem
+            key={order.id}
+            order={order}
+            onOrderOpen={onOrderOpen}
+            deleteOrder={deleteOrder}
+          />
         ))}
       </div>
     );
