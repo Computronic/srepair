@@ -1,11 +1,18 @@
 import React, { Component } from "react";
+import { Container } from "semantic-ui-react";
+
+import OrderDashboard from "../../features/order/OrderDashboard/OrderDashboard";
+import NavBar from "../../features/nav/NavBar/NavBar";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <h1>S-Repair</h1>
-      </div>
+      <React.Fragment>
+        <NavBar />
+        <Container className="main">
+          <OrderDashboard />
+        </Container>
+      </React.Fragment>
     );
   }
 }
