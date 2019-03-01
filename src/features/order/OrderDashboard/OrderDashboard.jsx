@@ -73,6 +73,15 @@ export class OrderDashboard extends Component {
     this.setState({ isOpen: false });
   };
 
+  handleCreateOrder = newOrder => {
+    newOrder.id = this.state.orders.length + 1;
+    const updatedOrders = [...this.state.orders, newOrder];
+    this.setState({
+      orders: updatedOrders,
+      isOpen: false
+    });
+  };
+
   render() {
     return (
       <Grid>
@@ -81,7 +90,9 @@ export class OrderDashboard extends Component {
         </Grid.Column>
         <Grid.Column width={6}>
           <Button onClick={this.handleFormOpen} positive content="Create Order" />
-          {this.state.isOpen && <OrderForm cancel={this.handleCancel} />}
+          {this.state.isOpen && (
+            <OrderForm createOrder={this.handleCreateOrder} handleCancel={this.handleCancel} />
+          )}
         </Grid.Column>
       </Grid>
     );

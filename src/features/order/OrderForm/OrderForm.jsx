@@ -2,107 +2,263 @@ import React, { Component } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 
 export class OrderForm extends Component {
+  state = {
+    order: {
+      type: "",
+      priority: "",
+      date: "",
+      clientId: "",
+      clientName: "",
+      clientPhone: "",
+      clientCity: "",
+      clientAddress: "",
+      deviceId: "",
+      deviceDescription: "",
+      deviceCategory: "",
+      observations: "",
+      accesories: "",
+      parts: "",
+      priceParts: "",
+      taxParts: "",
+      budget: "",
+      report: "",
+      repairedById: "",
+      repairedByName: "",
+      priceRepair: "",
+      taxRepair: "",
+      status: ""
+    }
+  };
+
+  onFormSubmit = evt => {
+    evt.preventDefault();
+    this.props.createOrder(this.state.order);
+  };
+
+  onInputChange = evt => {
+    const newOrder = this.state.order;
+    newOrder[evt.target.name] = evt.target.value;
+    this.setState({ order: newOrder });
+  };
+
   render() {
-    const { cancel } = this.props;
+    const { handleCancel } = this.props;
+    const { order } = this.state;
     return (
       <Segment>
-        <Form>
+        <Form onSubmit={this.onFormSubmit}>
           <Form.Field>
             <label>Type</label>
-            <input placeholder="Type" />
+            <input
+              name="type"
+              onChange={this.onInputChange}
+              value={order.type}
+              placeholder="Type"
+            />
           </Form.Field>
           <Form.Field>
             <label>Priority</label>
-            <input placeholder="Priority" />
+            <input
+              name="priority"
+              onChange={this.onInputChange}
+              value={order.priority}
+              placeholder="Priority"
+            />
           </Form.Field>
           <Form.Field>
-            <label>Order Date</label>
-            <input type="date" placeholder="Order Date" />
+            <label>Date</label>
+            <input
+              name="date"
+              onChange={this.onInputChange}
+              value={order.date}
+              type="date"
+              placeholder="Date"
+            />
           </Form.Field>
           <Form.Field>
             <label>Client Id</label>
-            <input placeholder="Client Id" />
+            <input
+              name="clientId"
+              onChange={this.onInputChange}
+              value={order.clientId}
+              placeholder="Client Id"
+            />
           </Form.Field>
           <Form.Field>
             <label>Client Name</label>
-            <input placeholder="Client Name" />
+            <input
+              name="clientName"
+              onChange={this.onInputChange}
+              value={order.clientName}
+              placeholder="Client Name"
+            />
           </Form.Field>
           <Form.Field>
             <label>Client Phone</label>
-            <input placeholder="Client Phone" />
+            <input
+              name="clientPhone"
+              onChange={this.onInputChange}
+              value={order.clientPhone}
+              placeholder="Client Phone"
+            />
           </Form.Field>
           <Form.Field>
             <label>Client City</label>
-            <input placeholder="Client City" />
+            <input
+              name="clientCity"
+              onChange={this.onInputChange}
+              value={order.clientCity}
+              placeholder="Client City"
+            />
           </Form.Field>
           <Form.Field>
             <label>Client Address</label>
-            <input placeholder="Client Address" />
+            <input
+              name="clientAddress"
+              onChange={this.onInputChange}
+              value={order.clientAddress}
+              placeholder="Client Address"
+            />
           </Form.Field>
           <Form.Field>
             <label>Device Id</label>
-            <input placeholder="Device Id" />
+            <input
+              name="deviceId"
+              onChange={this.onInputChange}
+              value={order.deviceId}
+              placeholder="Device Id"
+            />
           </Form.Field>
           <Form.Field>
             <label>Device Description</label>
-            <input placeholder="Device Description" />
+            <input
+              name="deviceDescription"
+              onChange={this.onInputChange}
+              value={order.deviceDescription}
+              placeholder="Device Description"
+            />
           </Form.Field>
           <Form.Field>
             <label>Device Category</label>
-            <input placeholder="Device Category" />
+            <input
+              name="deviceCategory"
+              onChange={this.onInputChange}
+              value={order.deviceCategory}
+              placeholder="Device Category"
+            />
           </Form.Field>
           <Form.Field>
             <label>Observations</label>
-            <input placeholder="Observations" />
+            <input
+              name="observations"
+              onChange={this.onInputChange}
+              value={order.observations}
+              placeholder="Observations"
+            />
           </Form.Field>
           <Form.Field>
             <label>Accesories</label>
-            <input placeholder="Accesories" />
+            <input
+              name="accesories"
+              onChange={this.onInputChange}
+              value={order.accesories}
+              placeholder="Accesories"
+            />
           </Form.Field>
           <Form.Field>
             <label>Parts</label>
-            <input placeholder="Parts" />
+            <input
+              name="parts"
+              onChange={this.onInputChange}
+              value={order.parts}
+              placeholder="Parts"
+            />
           </Form.Field>
           <Form.Field>
             <label>Price Parts</label>
-            <input placeholder="Price Parts" />
+            <input
+              name="priceParts"
+              onChange={this.onInputChange}
+              value={order.priceParts}
+              placeholder="Price Parts"
+            />
           </Form.Field>
           <Form.Field>
             <label>TAX Parts</label>
-            <input placeholder="TAX Parts" />
+            <input
+              name="taxParts"
+              onChange={this.onInputChange}
+              value={order.taxParts}
+              placeholder="TAX Parts"
+            />
           </Form.Field>
           <Form.Field>
             <label>Budget</label>
-            <input placeholder="Budget" />
+            <input
+              name="budget"
+              onChange={this.onInputChange}
+              value={order.budget}
+              placeholder="Budget"
+            />
           </Form.Field>
           <Form.Field>
             <label>Technical Report</label>
-            <input placeholder="Technical Report" />
+            <input
+              name="report"
+              onChange={this.onInputChange}
+              value={order.report}
+              placeholder="Technical Report"
+            />
           </Form.Field>
           <Form.Field>
             <label>Repaired by Id</label>
-            <input placeholder="Repaired by Id" />
+            <input
+              name="repairedById"
+              onChange={this.onInputChange}
+              value={order.repairedById}
+              placeholder="Repaired by Id"
+            />
           </Form.Field>
           <Form.Field>
             <label>Repaired by Name</label>
-            <input placeholder="Repaired by Name" />
+            <input
+              name="repairedByName"
+              onChange={this.onInputChange}
+              value={order.repairedByName}
+              placeholder="Repaired by Name"
+            />
           </Form.Field>
           <Form.Field>
             <label>Price Repair</label>
-            <input placeholder="Price Repair" />
+            <input
+              name="priceRepair"
+              onChange={this.onInputChange}
+              value={order.priceRepair}
+              placeholder="Price Repair"
+            />
           </Form.Field>
           <Form.Field>
             <label>TAX Repair</label>
-            <input placeholder="TAX Repair" />
+            <input
+              name="taxRepair"
+              onChange={this.onInputChange}
+              value={order.taxRepair}
+              placeholder="TAX Repair"
+            />
           </Form.Field>
           <Form.Field>
             <label>Status</label>
-            <input placeholder="Status" />
+            <input
+              name="status"
+              onChange={this.onInputChange}
+              value={order.status}
+              placeholder="Status"
+            />
           </Form.Field>
           <Button positive type="submit">
             Submit
           </Button>
-          <Button onClick={cancel} type="button">
+          <Button onClick={handleCancel} type="button">
             Cancel
           </Button>
         </Form>
