@@ -13,6 +13,7 @@ const emptyOrder = {
   deviceId: "",
   deviceDescription: "",
   deviceCategory: "",
+  problem: "",
   observations: "",
   accesories: "",
   parts: "",
@@ -163,6 +164,15 @@ export class OrderForm extends Component {
               onChange={this.onInputChange}
               value={order.deviceCategory}
               placeholder="Device Category"
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Problem</label>
+            <input
+              name="problem"
+              onChange={this.onInputChange}
+              value={order.problem}
+              placeholder="Problem"
             />
           </Form.Field>
           <Form.Field>
