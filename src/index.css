@@ -67,13 +67,32 @@ body {
   margin-right: 1.5em;
 }
 
-.ui.fixed.menu {
+.ui.inverted.menu {
   background-image: linear-gradient(
           135deg,
           rgb(24, 42, 115) 0%,
           rgb(33, 138, 174) 69%,
           rgb(32, 167, 172) 89%
   ) !important;
+  background: none;
+}
+
+.ui.inverted.menu .ui.dropdown .menu>.item {
+  color:rgba(255,255,255,.9) !important;
+}
+
+.ui.inverted.menu .ui.dropdown .menu>.item:hover {
+  background:rgba(255,255,255,.08) !important;
+}
+
+.ui.inverted.menu .ui.dropdown .menu{
+  background-image: linear-gradient(
+    135deg,
+    rgb(24, 42, 115) 0%,
+    rgb(33, 138, 174) 69%,
+    rgb(32, 167, 172) 89%
+) !important;
+background: none;
 }
 
 .ui.main.container,
@@ -97,6 +116,9 @@ body {
 .ui.menu:not(.vertical) .item>.button {
   margin-left: 0.5em;
 }
+.ui.sidebar {
+  overflow: visible !important
+}
 
 /*chat comments*/
 
@@ -105,3 +127,36 @@ body {
   padding-left: 2em !important;
 }
 
+/*headers*/
+.ui.sub.header>.sub.header {
+  text-transform: none !important
+}
+
+/*utils*/
+.common.label {
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  font-size: .85714286em !important;
+  margin-right: .5em !important;
+  height: 100% !important;
+}
+.child {
+  flex: 0 0 auto;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.parent {
+  display: flex;
+  flex-flow: row wrap;
+}
+.parent.centered {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.textwrap { 
+  overflow-wrap: break-word; 
+  word-wrap: break-word; 
+  hyphens: auto 
+}

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Container } from "semantic-ui-react";
 import { Route, Switch } from "react-router-dom";
 
 import HomePage from "../../features/home/HomePage";
@@ -21,19 +20,17 @@ class App extends Component {
         <Route
           path="/(.+)"
           render={() => (
-            <div>
-              <NavBar />
-              <Container className="main">
-                <Switch>
-                  <Route path="/orders" component={OrderDashboard} />
-                  <Route path="/order/:id" component={OrderDetailedPage} />
-                  <Route path="/people" component={PeopleDashboard} />
-                  <Route path="/profile/:id" component={UserDetailedPage} />
-                  <Route path="/settings" component={SettingsDashboard} />
-                  <Route path="/createOrder" component={OrderForm} />
-                </Switch>
-              </Container>
-            </div>
+            <NavBar>
+              <Switch>
+                <Route path="/orders" component={OrderDashboard} />
+                <Route path="/order/:id" component={OrderDetailedPage} />
+                <Route path="/manage/order/:id" component={OrderForm} />
+                <Route path="/people" component={PeopleDashboard} />
+                <Route path="/profile/:id" component={UserDetailedPage} />
+                <Route path="/settings" component={SettingsDashboard} />
+                <Route path="/createOrder" component={OrderForm} />
+              </Switch>
+            </NavBar>
           )}
         />
       </div>

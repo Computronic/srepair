@@ -1,50 +1,57 @@
 import React, { Component } from "react";
 import { Segment, Grid, Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export class OrderListItem extends Component {
   render() {
-    const { order, onOrderOpen, deleteOrder } = this.props;
+    const { order, deleteOrder } = this.props;
     return (
       <Segment>
-        <Grid celled>
+        <Grid celled verticalAlign="middle">
           <Grid.Row columns={3}>
             <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Order Id: </strong>
-              {order.id}
+              <div className="parent">
+                <div className="common label child">Order Id:</div>
+                <div className="child">{order.id}</div>
+              </div>
             </Grid.Column>
             <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Type: </strong>
-              {order.type}
+              <div className="parent">
+                <div className="common label child">Type:</div>
+                <div className="child">{order.type}</div>
+              </div>
             </Grid.Column>
             <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Priority: </strong>
-              {order.priority}
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row columns={2}>
-            <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Client Name: </strong>
-              {order.clientName}
-            </Grid.Column>
-            <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Device: </strong>
-              {order.deviceDescription}
+              <div className="parent">
+                <div className="common label child">Priority:</div>
+                <div className="child">{order.priority}</div>
+              </div>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={2}>
             <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Date: </strong>
-              {order.date}
+              <div className="parent">
+                <div className="common label child">Date:</div>
+                <div className="child">{order.date}</div>
+              </div>
             </Grid.Column>
             <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Status: </strong>
-              {order.status}
+              <div className="parent">
+                <div className="common label child">Status:</div>
+                {order.states && order.states.length > 0 ? (
+                  <div className="child">{order.states[order.states.length - 1].state}</div>
+                ) : (
+                  <div />
+                )}
+              </div>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
-              <strong style={{ fontSize: "1.1rem" }}>Problem: </strong>
-              {order.problem}
+              <div className="parent">
+                <div className="common label child">Client Name:</div>
+                <div className="child">{order.clientName + " " + order.clientLastname}</div>
+              </div>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
@@ -57,8 +64,8 @@ export class OrderListItem extends Component {
                 content="Delete"
               />
               <Button
-                onClick={onOrderOpen(order)}
-                as="a"
+                as={Link}
+                to={`/order/${order.id}`}
                 color="teal"
                 floated="right"
                 content="View"
